@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Студенческое направление МОДА - Актив ФИТ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Montserrat:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #FDFCFB;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-bg {
+            background-image: url('https://placehold.co/1200x800/A892D9/FFFFFF?text=Sewing+Pattern&font=montserrat');
+            background-blend-mode: overlay;
+        }
+
+        .gallery-item img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal {
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
+        
+        /* Стиль для уменьшения изображения anime.jpg */
+        .smaller-image {
+            max-width: 80%;
+            margin: 0 auto;
+        }
+        
+        /* Стили для слайдера */
+        .slider-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 80vh;
+        }
+        
+        .slide {
+            min-width: 100%;
+            height: 100%;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .slider-btn:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .prev {
+            left: 20px;
+        }
+        
+        .next {
+            right: 20px;
+        }
+        
+        .slider-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .indicator.active {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+
+<body class="text-gray-800">
+
+    <main>
+        <section
+            class="hero-bg bg-violet-100 bg-opacity-50 bg-cover bg-center min-h-screen flex flex-col items-center justify-center text-center p-4">
+            <div class="bg-white/80 backdrop-blur-sm p-8 rounded-xl shadow-lg">
+                <h1 class="text-5xl md:text-8xl font-black uppercase tracking-tighter text-violet-800">МОДА</h1>
+                <p class="text-xl md:text-2xl font-bold text-gray-700 mt-2">Актив ФИТ</p>
+                <p class="mt-6 max-w-2xl mx-auto text-lg">Место, где твои самые смелые идеи превращаются в реальность.
+                    Создавай, твори и выходи на сцену вместе с нами!</p>
+                <a href="#about"
+                    class="mt-8 inline-block bg-violet-600 text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-violet-700 transition-colors shadow-md">Узнать
+                    больше</a>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 px-4">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-4">Кто мы и зачем тебе это нужно?</h2>
+                <p class="text-center text-lg max-w-3xl mx-auto mb-12">Мы — творческое объединение, где каждый может
+                    найти себя. Если ты когда-либо мечтал создать что-то по-настоящему своё, то ты пришел по адресу.</p>
+                <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12 bg-white p-8 rounded-xl shadow-md">
+                    <div class="w-full md:w-1/2">
+                        <!-- Добавлен класс smaller-image для уменьшения размера -->
+                        <img src="anime.jpg"
+                            alt="Вдохновение из аниме" class="rounded-lg w-full object-cover smaller-image">
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <h3 class="text-2xl font-bold mb-4 text-violet-700">Как в «Любви с иголочки»!</h3>
+                        <p class="text-lg">Где обычный парень-портной помогает косплеерше воплощать её мечты? Наше
+                            направление — это нечто подобное! Мы — твоя команда, которая поможет освоить всё, от
+                            разработки идеи и эскиза до финального выхода на сцену. Неважно, умеешь ли ты шить — важно,
+                            что ты хочешь творить!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="py-20 px-4 bg-violet-50">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-12">Как мы творим?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-md transform hover:-translate-y-2 transition-transform">
+                        <div class="text-5xl mb-4">🎨</div>
+                        <h3 class="text-2xl font-bold mb-2">1. Идея и Дизайн</h3>
+                        <p>Начинаем с мозгового штурма. Ищем вдохновение в фильмах, аниме, искусстве. Продумываем
+                            концепцию, создаем эскизы и подбираем материалы.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md transform hover:-translate-y-2 transition-transform">
+                        <div class="text-5xl mb-4">✂️</div>
+                        <h3 class="text-2xl font-bold mb-2">2. Пошив</h3>
+                        <p>Это та самая магия! Мы научим тебя всему, что знаем сами — от простых швов до сложных
+                            элементов. Вместе мы создадим костюм, который станет продолжением твоей идеи.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md transform hover:-translate-y-2 transition-transform">
+                        <div class="text-5xl mb-4">🌟</div>
+                        <h3 class="text-2xl font-bold mb-2">3. Выступление</h3>
+                        <p>Наш путь заканчивается на сцене! Ты сможешь продемонстрировать свою работу на «Студвесне» и
+                            других мероприятиях факультета и университета.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 px-4">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-12">Почему стоит присоединиться?</h2>
+                <p class="text-center text-lg max-w-3xl mx-auto mb-12">Мы не просто шьём одежду. Мы создаём историю,
+                    приобретаем бесценный опыт и находим друзей.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                    <div class="border-l-4 border-violet-500 pl-6">
+                        <h3 class="text-2xl font-bold mb-2">Навыки</h3>
+                        <p>Ты научишься шить, работать в команде, планировать проекты и выступать публично. Эти навыки
+                            пригодятся тебе всегда!</p>
+                    </div>
+                    <div class="border-l-4 border-violet-500 pl-6">
+                        <h3 class="text-2xl font-bold mb-2">Самовыражение</h3>
+                        <p>Наше направление — это полная свобода творчества. Выражай себя, создавай уникальные образы и
+                            не бойся экспериментировать.</p>
+                    </div>
+                    <div class="border-l-4 border-violet-500 pl-6">
+                        <h3 class="text-2xl font-bold mb-2">Дружба</h3>
+                        <p>У нас нет места конкуренции, только поддержка и веселье. Мы — одна большая дружная семья, где
+                            каждая победа — общая радость.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="gallery" class="py-20 px-4 bg-violet-50">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-4">Галерея наших работ</h2>
+                <p class="text-center text-lg max-w-3xl mx-auto mb-12">Посмотри, что мы уже создали! Это лишь несколько
+                    ярких моментов с наших выступлений.</p>
+                
+                <!-- Слайдер -->
+                <div class="slider-container">
+                    <div class="slider">
+                        <div class="slide">
+                            <img src="all.jpg" alt="Образ 1">
+                        </div>
+                        <div class="slide">
+                            <img src="jojo.jpg" alt="Образ 2">
+                        </div>
+                        <div class="slide">
+                            <img src="community.jpg" alt="Образ 3">
+                        </div>
+                        <div class="slide">
+                            <img src="hype.jpg" alt="Образ 4">
+                        </div>
+                    </div>
+                    
+                    <!-- Кнопки навигации -->
+                    <button class="slider-btn prev">❮</button>
+                    <button class="slider-btn next">❯</button>
+                    
+                    <!-- Индикаторы -->
+                    <div class="slider-indicators">
+                        <div class="indicator active" data-slide="0"></div>
+                        <div class="indicator" data-slide="1"></div>
+                        <div class="indicator" data-slide="2"></div>
+                        <div class="indicator" data-slide="3"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="join" class="py-20 px-4 text-center">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold mb-4">Это для тебя, если ты хочешь:</h2>
+                <div class="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto my-8">
+                    <span class="bg-violet-100 text-violet-800 font-semibold py-2 px-4 rounded-full">Придумывать образы
+                        и костюмы</span>
+                    <span class="bg-violet-100 text-violet-800 font-semibold py-2 px-4 rounded-full">Выступать на
+                        сцене</span>
+                    <span class="bg-violet-100 text-violet-800 font-semibold py-2 px-4 rounded-full">Научиться
+                        шить</span>
+                    <span class="bg-violet-100 text-violet-800 font-semibold py-2 px-4 rounded-full">Создавать что
+                        угодно из чего угодно</span>
+                    <span class="bg-violet-100 text-violet-800 font-semibold py-2 px-4 rounded-full">Попробовать что-то
+                        новое</span>
+                </div>
+                <h3 class="text-3xl font-bold mt-12 mb-6">Готов присоединиться?</h3>
+                <p class="max-w-2xl mx-auto text-lg mb-8">Сканируй QR-код и становись частью нашей творческой команды.
+                    Мы ждем именно тебя!</p>
+                <div class="flex justify-center">
+                    <img src="qr.png"
+                        alt="QR код для вступления в группу" class="rounded-lg shadow-lg h-64">
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-6 bg-gray-800 text-white">
+        <p>&copy; 2025 Студенческое направление МОДА, Актив ФИТ.</p>
+    </footer>
+
+    <script>
+        // Слайдер галереи
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.querySelector('.prev');
+            const nextBtn = document.querySelector('.next');
+            const indicators = document.querySelectorAll('.indicator');
+            
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+            
+            // Функция для обновления слайдера
+            function updateSlider() {
+                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                // Обновление индикаторов
+                indicators.forEach((indicator, index) => {
+                    if (index === currentSlide) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Следующий слайд
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlider();
+            }
+            
+            // Предыдущий слайд
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateSlider();
+            }
+            
+            // Обработчики событий для кнопок
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            
+            // Обработчики событий для индикаторов
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentSlide = index;
+                    updateSlider();
+                });
+            });
+            
+            
+            // Остановка автопереключения при наведении на слайдер
+            const sliderContainer = document.querySelector('.slider-container');
+            sliderContainer.addEventListener('mouseenter', () => {
+                clearInterval(intervalId);
+            });
+            
+            let intervalId = setInterval(nextSlide, 5000);
+            
+            sliderContainer.addEventListener('mouseleave', () => {
+                clearInterval(intervalId);
+                intervalId = setInterval(nextSlide, 5000);
+            });
+        });
+    </script>
+</body>
+
+</html>
